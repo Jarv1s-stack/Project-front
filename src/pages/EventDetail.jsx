@@ -8,6 +8,8 @@ import styles from "./EventDetail.module.css";
 
 export default function EventDetail() {
   const { id } = useParams();
+  console.log(id);
+  
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   let actualUser = authContext?.user;
