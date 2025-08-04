@@ -11,7 +11,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/api/events")
+    fetch("https://project-back-3rgq.onrender.com/api/events")
       .then(res => res.json())
       .then(data => setEvents(Array.isArray(data) ? data : []))
       .finally(() => setLoading(false));

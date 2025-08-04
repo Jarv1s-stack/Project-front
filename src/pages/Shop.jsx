@@ -17,7 +17,7 @@ const Shop = () => {
 
   const handleBuy = async (itemId) => {
     setMessage("");
-    const res = await fetch("/api/shop/purchase", {
+    const res = await fetch("https://project-back-3rgq.onrender.com/api/shop/purchase", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ itemId }),

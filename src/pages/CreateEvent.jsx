@@ -17,7 +17,7 @@ export default function CreateEvent() {
     setError("");
     setInfo("");
     try {
-      const res = await fetch("/api/events", {
+      const res = await fetch("https://project-back-3rgq.onrender.com/api/events", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
