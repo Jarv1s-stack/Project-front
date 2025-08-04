@@ -21,7 +21,7 @@ export default function Profile() {
       return;
     }
 
-    fetch("/api/users/me", {
+    fetch("https://project-back-3rgq.onrender.com/api/users/me", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -41,7 +41,7 @@ export default function Profile() {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("/api/users/change-password", {
+      const res = await fetch("https://project-back-3rgq.onrender.com/api/users/change-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +134,7 @@ export default function Profile() {
 
 
       <button
-        onClick={() => setShowPasswordForm(!showPasswordForm)} // Переключение видимости формы
+        onClick={() => setShowPasswordForm(!showPasswordForm)}
         style={{
           marginTop: 16,
           padding: "8px 16px",
