@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthContext } from "./context/AuthContext";
 import Footer from "./components/Footer"
-import OtherProfile from "./pages/UserProfile";
+import OtherProfile from "./pages/OtherProfile";
 
 function PrivateRoute({ children }) {
   const { user } = React.useContext(AuthContext);
