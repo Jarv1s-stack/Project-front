@@ -81,7 +81,7 @@ export default function Profile() {
 
       {user.avatar && (
         <img
-          src={`http://localhost:5000${user.avatar}`}
+          src={`https://project-back-3rgq.onrender.com${user.avatar}`}
           alt="avatar"
           style={{
             width: 120,

@@ -20,7 +20,7 @@ export default function OtherProfile() {
       return;
     }
 
-    fetch(`http://localhost:5000/api/users/other/${id}`, {
+    fetch(`https://project-back-3rgq.onrender.com/api/users/other/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -45,7 +45,7 @@ export default function OtherProfile() {
 
       {user.avatar && (
         <img
-          src={`http://localhost:5000${user.avatar}`}
+          src={`https://project-back-3rgq.onrender.com${user.avatar}`}
           alt="avatar"
           style={{
             width: 120,
