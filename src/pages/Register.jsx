@@ -27,7 +27,7 @@ export default function Register() {
       formData.append("password", password);
       if (avatar) formData.append("avatar", avatar);
 
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch("https://project-back-3rgq.onrender.com/api/auth/register", {
         method: "POST",
         body: formData
       });
