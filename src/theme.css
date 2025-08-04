@@ -58,6 +58,9 @@ body.dark {
   align-items: center;
   gap: 16px;
 }
+footer{
+  font-family: "Montserrat", sans-serif !important;
+}
 
 .header-points {
   font-weight: 500;
