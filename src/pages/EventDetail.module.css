@@ -1,0 +1,104 @@
+/* src/pages/EventDetail.module.css */
+.container {
+  width: 600px;
+  margin: 0 auto;
+  padding: 50px 40px;
+  background-color: #4f46e5;
+  color: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 8px;
+}
+
+.description {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.status {
+  color: #444cf7;
+  margin-bottom: 10px;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+  flex-direction: column;
+}
+
+.participantsBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.participantsBlock h3{
+  text-align: start;
+}
+
+.partHeader {
+  margin-bottom: 8px;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.participantsList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.participantItem {
+  cursor: pointer;
+  text-decoration: underline;
+  margin: 6px 0;
+}
+
+.you {
+  color: #d1d1d1;
+  margin-left: 6px;
+}
+
+.joinBtn,
+.leaveBtn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  width: 150px;
+}
+
+.joinBtn {
+  background: #38df00;
+}
+
+.leaveBtn {
+  background: #cc2222;
+}
+
+.chatBlock {
+  flex: 1;
+  border-top: 2px solid white;
+  padding-top: 20px;
+}
+
+/* вспомогательные */
+.loading,
+.error,
+.noParticipants {
+  text-align: center;
+}
