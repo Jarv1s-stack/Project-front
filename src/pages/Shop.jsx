@@ -7,7 +7,7 @@ const Shop = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("/api/shop")
+    fetch("https://project-back-3rgq.onrender.com/api/shop")
       .then(res => res.json())
       .then(data => {
         setItems(data);
