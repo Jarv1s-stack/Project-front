@@ -65,7 +65,7 @@ export default function EventDetail() {
   const handleLeave = async () => {
     setJoinStatus("");
     try {
-      await fetch(`https://project-back-3rgq.onrender.com/api/events/${id}/leave`);
+      await axios.delete(`https://project-back-3rgq.onrender.com/api/events/${id}/leave`);
       setJoinStatus("Вы успешно вышли из события.");
       await fetchEvent();
     } catch (err) {
