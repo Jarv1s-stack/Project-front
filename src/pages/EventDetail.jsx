@@ -5,6 +5,7 @@ import api from "../utils/api";
 import { AuthContext } from "../context/AuthContext";
 import ChatBox from "../components/ChatBox";
 import styles from "./EventDetail.module.css";
+import axios from "axios";
 
 export default function EventDetail() {
   const { id } = useParams();
@@ -32,7 +33,7 @@ export default function EventDetail() {
   const fetchEvent = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://project-back-3rgq.onrender.com/api/events/${id}`);
+      const response = await axios.get(`https://project-back-3rgq.onrender.com/api/events/${id}`);
       setEvent(response.data);
       console.log(response);
     } catch (err) {
