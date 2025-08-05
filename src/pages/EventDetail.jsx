@@ -34,6 +34,7 @@ export default function EventDetail() {
     try {
       const { data } = await fetch(`https://project-back-3rgq.onrender.com/api/events/${id}`);
       setEvent(data);
+      console.log(data);
     } catch (err) {
       console.error("Ошибка при загрузке события:", err);
     } finally {
