@@ -32,9 +32,9 @@ export default function EventDetail() {
   const fetchEvent = async () => {
     setLoading(true);
     try {
-      const { data } = await fetch(`https://project-back-3rgq.onrender.com/api/events/${id}`);
-      setEvent(data);
-      console.log(data);
+      const response = await fetch(`https://project-back-3rgq.onrender.com/api/events/${id}`);
+      setEvent(response.data);
+      console.log(response);
     } catch (err) {
       console.error("Ошибка при загрузке события:", err);
     } finally {
