@@ -78,7 +78,7 @@ export default function Profile() {
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: "40px auto",color: "white", padding: "20px", background: "#fff", borderRadius: 14, boxShadow: "0 6px 32px #0001", backgroundColor: "#4F46E5", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>                                 
+    <div style={{ maxWidth: 480, margin: "40px auto",color: "white", padding: "20px", background: "#fff", borderRadius: 7, boxShadow: "0 6px 32px #0001", backgroundColor: "#4F46E5", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>                                 
     <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", width: "100%", height: "auto", gap: "15px"}} >
       {user.avatar && (
         <img
