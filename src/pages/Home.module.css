@@ -41,8 +41,11 @@ h1 {
   font-size: 1.13rem;
 }
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
   gap: 20px 13px;
 }
 .card {
