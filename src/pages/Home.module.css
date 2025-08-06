@@ -45,7 +45,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400xp;
+  width: 400px;
   /* grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
   gap: 20px 13px;
 }
