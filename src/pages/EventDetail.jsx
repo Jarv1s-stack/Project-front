@@ -50,7 +50,7 @@ export default function EventDetail() {
   const handleJoin = async () => {
     setJoinStatus("");
     try {
-      await axios.post(`https://project-back-3rgq.onrender.com/api/events/${id}/join`);
+      await api.post(`/events/${id}/join`)
       setJoinStatus("Вы успешно присоединились к событию.");
       await fetchEvent();
     } catch (err) {
@@ -65,7 +65,7 @@ export default function EventDetail() {
   const handleLeave = async () => {
     setJoinStatus("");
     try {
-      await axios.delete(`https://project-back-3rgq.onrender.com/api/events/${id}/leave`);
+      await api.delete(`/events/${id}/leave`)
       setJoinStatus("Вы успешно вышли из события.");
       await fetchEvent();
     } catch (err) {
