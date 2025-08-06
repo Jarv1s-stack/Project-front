@@ -96,13 +96,13 @@ export default function Profile() {
 
       <div style={{  display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100%", height: "auto", gap: "15px"}}>
       <div style={{ marginBottom: 16 }}>
-        <strong style={{marginRight: "10px", marginLeft: "-110px"}}>Имя:</strong> {user.username}
+        <strong>Имя:</strong> {user.username}
       </div>
       <div style={{ marginBottom: 16 }}>
-        <strong style={{marginRight: "10px"}}>Email:</strong> {user.email}
+        <strong>Email:</strong> {user.email}
       </div>
       <div style={{ marginBottom: 16 }}>
-        <strong style={{marginRight: "10px", marginLeft: "-110px"}}>Points:</strong> {user.points}
+        <strong>Points:</strong> {user.points}
       </div>
       </div>
 
