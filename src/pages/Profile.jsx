@@ -94,7 +94,7 @@ export default function Profile() {
         />
       )}
 
-      <div style={{  display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100%", height: "auto", gap: "15px"}}>
+      <div style={{  display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "center", width: "100%", height: "auto", gap: "15px"}}>
       <div style={{ marginBottom: 16 }}>
         <strong>Имя:</strong> {user.username}
       </div>
