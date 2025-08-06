@@ -90,6 +90,7 @@ export default function Profile() {
             borderRadius: "50%",
             objectFit: "cover",
             marginBottom: 16,
+            marginLeft: "40px",
           }}
         />
       )}
