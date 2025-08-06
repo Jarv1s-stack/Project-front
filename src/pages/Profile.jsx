@@ -94,14 +94,14 @@ export default function Profile() {
         />
       )}
 
-      <div style={{  display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "start", width: "100%", height: "auto", gap: "15px"}}>
-      <div style={{ marginBottom: 16 }}>
+      <div style={{  display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "start", width: "100%", height: "auto", gap: "6px"}}>
+      <div>
         <strong>Имя:</strong> {user.username}
       </div>
-      <div style={{ marginBottom: 16 }}>
+      <div>
         <strong>Email:</strong> {user.email}
       </div>
-      <div style={{ marginBottom: 16 }}>
+      <div>
         <strong>Points:</strong> {user.points}
       </div>
       </div>
