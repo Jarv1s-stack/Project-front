@@ -43,11 +43,13 @@ export default function Home() {
               onClick={() => navigate(`/events/${event.id}`)}
               title="Подробнее"
             >
+            <div className={styles.left}>
               <div className={styles.title}>{event.title}</div>
-              <div className={styles.date}>
-                {new Date(event.date).toLocaleString()}
-              </div>
               <div className={styles.desc}>{event.description}</div>
+            </div>
+            <div className={styles.date}>
+              {new Date(event.date).toLocaleString()}
+            </div>
             </div>
           ))}
         </div>
