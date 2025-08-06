@@ -73,8 +73,8 @@ h1 {
   flex-direction: column;
   width: auto;
   height: auto;
-  justify-content: center;
-  align-items: center;
+  justify-content: start;
+  align-items: start;
   gap: 7px;
 }
 
