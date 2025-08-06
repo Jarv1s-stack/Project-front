@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
+
 export default function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -77,7 +78,7 @@ export default function Profile() {
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: "40px auto",color: "white", padding: "20px", background: "#fff", borderRadius: 14, boxShadow: "0 6px 32px #0001", backgroundColor: "#4F46E5", display: "flex", flexDirection: "column", alignItems: "center" }}>                                 
+    <div style={{ maxWidth: 480, margin: "40px auto",color: "white", padding: "20px", background: "#fff", borderRadius: 14, boxShadow: "0 6px 32px #0001", backgroundColor: "#4F46E5", display: "flex", flexDirection: "row", alignItems: "center" }}>                                 
 
       {user.avatar && (
         <img
@@ -93,6 +94,7 @@ export default function Profile() {
         />
       )}
 
+      <div style={{  display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", width: "100%", height: "auto", gap: "15px"}}>
       <div style={{ marginBottom: 16 }}>
         <strong style={{marginRight: "10px", marginLeft: "-110px"}}>Имя:</strong> {user.username}
       </div>
@@ -101,6 +103,7 @@ export default function Profile() {
       </div>
       <div style={{ marginBottom: 16 }}>
         <strong style={{marginRight: "10px", marginLeft: "-110px"}}>Points:</strong> {user.points}
+      </div>
       </div>
 
       <div style={{   
