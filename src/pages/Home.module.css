@@ -64,8 +64,8 @@ h1 {
   color: white;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+  align-items: start;
 }
 
 .left{
