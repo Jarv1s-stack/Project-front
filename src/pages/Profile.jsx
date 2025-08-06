@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 export default function Profile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showPasswordForm, setShowPasswordForm] = useState(false); // Стейт для управления видимостью формы
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

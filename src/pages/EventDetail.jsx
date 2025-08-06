@@ -9,7 +9,6 @@ import axios from "axios";
 
 export default function EventDetail() {
   const { id } = useParams();
-  console.log(id);
   
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
@@ -20,7 +19,6 @@ export default function EventDetail() {
   const [loading, setLoading] = useState(true);
   const [joinStatus, setJoinStatus] = useState("");
 
-  // проверяем, участвует ли текущий пользователь
   const isParticipant = useMemo(() => {
     if (!event?.participants || !actualUser) return false;
     const userId = String(actualUser.id ?? actualUser.user_id ?? actualUser._id);
@@ -29,13 +27,11 @@ export default function EventDetail() {
       .includes(userId);
   }, [event, actualUser]);
 
-  // загрузка события
   const fetchEvent = async () => {
     setLoading(true);
     try {
       const response = await axios.get(`https://project-back-3rgq.onrender.com/api/events/${id}`);
       setEvent(response.data);
-      console.log(response);
     } catch (err) {
       console.error("Ошибка при загрузке события:", err);
     } finally {
