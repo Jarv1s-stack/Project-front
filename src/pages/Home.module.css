@@ -75,7 +75,7 @@ h1 {
   height: auto;
   justify-content: start;
   align-items: start;
-  gap: 7px;
+  gap: 12px;
 }
 
 .card:hover {
