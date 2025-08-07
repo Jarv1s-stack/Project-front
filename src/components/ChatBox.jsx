@@ -15,9 +15,7 @@ export default function ChatBox({ eventId, currentUser }) {
     return () => clearInterval(interval);
   }, [eventId]);
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+
 
   const fetchMessages = async () => {
     try {
@@ -30,10 +28,6 @@ export default function ChatBox({ eventId, currentUser }) {
     }
   };
 
-  const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!content.trim()) return;
@@ -41,11 +35,10 @@ export default function ChatBox({ eventId, currentUser }) {
     try {
       await api.post(`/messages/${eventId}`, { content });
       setContent("");
-      // Optimistically update messages
       setMessages(prev => [
         ...prev, 
         {
-          id: Date.now(), // temporary id
+          id: Date.now(),
           content,
           username: currentUser?.username || "You",
           isCurrentUser: true
