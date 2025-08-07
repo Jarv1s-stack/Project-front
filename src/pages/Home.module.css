@@ -1,3 +1,4 @@
+/* Home.module.css */
 .homeWrapper {
   width: 100%;
   max-width: 1200px;
@@ -98,59 +99,84 @@
 
 .eventsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
 .eventCard {
-  background: #4F46E5;
+  background: white;
   border-radius: 12px;
-  padding: 18px;
+  padding: 0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  min-height: 200px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  min-height: 140px;
-  color: white;
+  flex-direction: column;
 }
 
 .eventCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);
 }
 
 .cardContent {
+  padding: 20px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  gap: 8px;
-  max-width: 60%;
+  position: relative;
+  z-index: 2;
 }
 
 .eventTitle {
   font-size: 1.2rem;
   font-weight: 600;
-  margin: 0;
+  margin: 0 0 10px 0;
+  color: #111827;
 }
 
 .eventDesc {
   font-size: 0.95rem;
-  margin: 0;
-  opacity: 0.9;
+  margin: 0 0 15px 0;
+  color: #4b5563;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  line-height: 1.4;
 }
 
 .eventDate {
-  font-size: 0.9rem;
-  margin-top: 12px;
-  opacity: 0.8;
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f3f4f6;
 }
 
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4F46E5, #818cf8);
+  transition: height 0.3s ease;
+}
+
+.eventCard:hover .cardOverlay {
+  height: 6px;
+}
+
+@media (max-width: 1024px) {
+  .eventsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
 
 @media (max-width: 768px) {
   .homeWrapper {
@@ -170,12 +196,14 @@
   }
 
   .eventsGrid {
-    grid-template-columns: 1fr;
     gap: 16px;
   }
 
   .eventCard {
-    min-height: 120px;
+    min-height: 180px;
+  }
+
+  .cardContent {
     padding: 16px;
   }
 }
@@ -187,5 +215,18 @@
 
   .pageTitle {
     font-size: 1.3rem;
+  }
+
+  .eventsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .eventTitle {
+    font-size: 1.1rem;
+  }
+
+  .eventDesc {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
   }
 }

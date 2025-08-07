@@ -1,3 +1,4 @@
+// Home.jsx (изменения только в стилях, логика остается той же)
 import React, { useEffect, useState, useContext } from "react";
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
@@ -60,16 +61,17 @@ export default function Home() {
               <div className={styles.cardContent}>
                 <h3 className={styles.eventTitle}>{event.title}</h3>
                 <p className={styles.eventDesc}>{event.description}</p>
+                <div className={styles.eventDate}>
+                  {new Date(event.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </div>
               </div>
-              <div className={styles.eventDate}>
-                {new Date(event.date).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric',
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </div>
+              <div className={styles.cardOverlay}></div>
             </div>
           ))}
         </div>
