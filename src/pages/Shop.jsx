@@ -75,7 +75,7 @@ const Shop = () => {
             <h3 className={styles.itemTitle}>{item.name}</h3>
             <p className={styles.itemDesc}>{item.description}</p>
             <div className={styles.cardFooter}>
-              <span className={styles.price}>{item.price} $</span>
+              <span className={styles.price}>{item.price} P</span>
               <button 
                 onClick={() => handleBuy(item.id)}
                 className={styles.buyBtn}
