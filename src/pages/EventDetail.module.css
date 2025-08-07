@@ -7,6 +7,7 @@
   color: #fff;
   border-radius: 16px;
   box-sizing: border-box;
+  margin-bottom: 60px;
 }
 
 .eventHeader {
@@ -135,6 +136,7 @@
   .container {
     padding: 15px;
     border-radius: 0;
+    margin-bottom: 40px;
   }
 
   .title {

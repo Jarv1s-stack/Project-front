@@ -24,6 +24,13 @@
   max-width: 100%;
 }
 
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1001;
+}
+
 /* Бургер-кнопка */
 .burgerButton {
   display: none;
@@ -31,7 +38,6 @@
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 1001;
 }
 
 .burgerIcon {
@@ -46,8 +52,6 @@
   align-items: center;
   gap: 20px;
   height: 100%;
-  flex-grow: 1;
-  max-width: 500px;
 }
 
 .navButton {
@@ -79,7 +83,7 @@
 }
 
 .themeToggle {
-  margin-left: 10px;
+  margin-left: 0;
 }
 
 /* Затемнение фона */
@@ -146,7 +150,7 @@
   }
   
   .themeToggle {
-    margin-left: 0;
+    order: -1;
     margin-top: 20px;
   }
 }

@@ -8,15 +8,13 @@ import home from "../assets/home.svg";
 import profile from "../assets/profile.svg";
 import createEvent from "../assets/createEvent.svg";
 import shop from "../assets/shop.svg";
-import burgerIcon from "../assets/burger-menu.svg"; // Добавьте иконку бургер-меню
+import burgerIcon from "../assets/burger-menu.svg";
 
 export default function Header() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const isActive = (path) => location.pathname === path;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -33,16 +31,18 @@ export default function Header() {
         <img src={logo} alt="Logo" className={styles.logo} />
       </div>
 
-      {/* Бургер-иконка для мобильных */}
-      <button 
-        className={styles.burgerButton}
-        onClick={toggleMenu}
-        aria-label="Menu"
-      >
-        <img src={burgerIcon} alt="Menu" className={styles.burgerIcon} />
-      </button>
+      <div className={styles.rightSection}>
+        <ThemeToggle className={styles.themeToggle} />
+        
+        <button 
+          className={styles.burgerButton}
+          onClick={toggleMenu}
+          aria-label="Menu"
+        >
+          <img src={burgerIcon} alt="Menu" className={styles.burgerIcon} />
+        </button>
+      </div>
 
-      {/* Основная навигация */}
       <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
         <button
           className={styles.navButton}
@@ -79,11 +79,8 @@ export default function Header() {
           <img src={profile} alt="Profile" className={styles.navIcon} />
           <span className={styles.navText}>Profile</span>
         </button>
-        
-        <ThemeToggle className={styles.themeToggle} />
       </nav>
 
-      {/* Затемнение фона при открытом меню */}
       {isMenuOpen && (
         <div className={styles.overlay} onClick={toggleMenu} />
       )}
