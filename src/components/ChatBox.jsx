@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import api from "../utils/api";
-import styles from "./ChatBox.module.css";
+import styles from "../styles/ChatBox.module.css";
 
 export default function ChatBox({ eventId, currentUser }) {
   const [messages, setMessages] = useState([]);

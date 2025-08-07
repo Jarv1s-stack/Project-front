@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import lightIcon from "../assets/light.svg";
 import darkIcon from "../assets/dark.svg";
-import styles from "./ThemeToggle.module.css";
+import styles from "../styles/ThemeToggle.module.css";
 
 export default function ThemeToggle() {
   const [theme, setTheme] = useState(() => {

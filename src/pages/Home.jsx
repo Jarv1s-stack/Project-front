@@ -1,6 +1,6 @@
 // Home.jsx (изменения только в стилях, логика остается той же)
 import React, { useEffect, useState, useContext } from "react";
-import styles from "./Home.module.css";
+import styles from "../styles/Home.module.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import createEvent from "../assets/createEvent.svg";

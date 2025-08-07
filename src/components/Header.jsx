@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import styles from "./Header.module.css";
+import styles from "../styles/Header.module.css";
 import { AuthContext } from "../context/AuthContext";
 import ThemeToggle from "./ThemeToggle";
 import logo from "../assets/logo.svg";

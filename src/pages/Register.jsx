@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import styles from "./Register.module.css";
+import styles from "../styles/Register.module.css";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import emailIcon from "../assets/emailIcon.svg";

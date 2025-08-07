@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import styles from "./Shop.module.css";
+import styles from "../styles/Shop.module.css";
 
 const Shop = () => {
   const [items, setItems] = useState([]);

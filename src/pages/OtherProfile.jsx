@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import styles from "./OtherProfile.module.css";
+import styles from "../styles/OtherProfile.module.css";
 
 export default function OtherProfile() {
   const [user, setUser] = useState(null);

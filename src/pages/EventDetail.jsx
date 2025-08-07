@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../utils/api";
 import { AuthContext } from "../context/AuthContext";
 import ChatBox from "../components/ChatBox";
-import styles from "./EventDetail.module.css";
+import styles from "../styles/EventDetail.module.css";
 import axios from "axios";
 
 export default function EventDetail() {

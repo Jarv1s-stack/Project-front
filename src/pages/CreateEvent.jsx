@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import styles from "./CreateEvent.module.css";
+import styles from "../styles/CreateEvent.module.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
