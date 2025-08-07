@@ -25,7 +25,7 @@
   transition: height 0.3s ease;
 }
 
-/* Бургер-кнопка */
+
 .burgerButton {
   display: none;
   background: none;
@@ -46,7 +46,7 @@
   transition: all 0.3s ease;
 }
 
-/* Основная навигация */
+
 .nav {
   display: flex;
   justify-content: center;
@@ -94,10 +94,10 @@
 }
 
 .themeToggle {
-  margin-left: 10px;
+  margin-left: 30px;
 }
 
-/* Затемнение фона */
+
 .overlay {
   position: fixed;
   top: 0;
@@ -109,7 +109,7 @@
   backdrop-filter: blur(2px);
 }
 
-/* Адаптация для планшетов */
+
 @media (max-width: 992px) {
   .header {
     height: 65px;
@@ -133,7 +133,7 @@
   }
 }
 
-/* Адаптация для мобильных */
+
 @media (max-width: 768px) {
   .header {
     height: 60px;
