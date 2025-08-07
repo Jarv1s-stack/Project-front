@@ -37,42 +37,58 @@ export default function CreateEvent() {
   return (
     <div className={styles.wrapper}>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <h2>Create Event</h2>
-        <label>
-          Title Event
-          <input
-            type="text"
-            required
-            minLength={3}
-            maxLength={70}
-            value={title}
-            onChange={e => setTitle(e.target.value)}
-            placeholder="enter the title event"
-          />
-        </label>
-        <label>
-          Description
-          <textarea
-            required
-            minLength={5}
-            maxLength={500}
-            value={description}
-            onChange={e => setDescription(e.target.value)}
-            placeholder="Enter the description event"
-          />
-        </label>
-        <label>
-          Start date and time
-          <input
-            type="datetime-local"
-            required
-            value={date}
-            onChange={e => setDate(e.target.value)}
-          />
-        </label>
+        <h2 className={styles.title}>Create Event</h2>
+        
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Title Event
+            <input
+              type="text"
+              className={styles.input}
+              required
+              minLength={3}
+              maxLength={70}
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              placeholder="Enter event title"
+            />
+          </label>
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Description
+            <textarea
+              className={styles.textarea}
+              required
+              minLength={5}
+              maxLength={500}
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+              placeholder="Enter event description"
+            />
+          </label>
+        </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label}>
+            Start date and time
+            <input
+              type="datetime-local"
+              className={styles.input}
+              required
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            />
+          </label>
+        </div>
+
         {error && <div className={styles.error}>{error}</div>}
         {info && <div className={styles.info}>{info}</div>}
-        <button type="submit" className={styles.submitBtn}>Create</button>
+
+        <button type="submit" className={styles.submitBtn}>
+          Create Event
+        </button>
       </form>
     </div>
   );

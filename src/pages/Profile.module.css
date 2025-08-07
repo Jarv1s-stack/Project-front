@@ -189,7 +189,7 @@
 /* Мобильная адаптация */
 @media (max-width: 600px) {
   .profileContainer {
-    margin: 20px 15px;
+    width: 80%;
     padding: 20px;
   }
 
@@ -210,6 +210,7 @@
 
 @media (max-width: 400px) {
   .profileContainer {
+    width: 80%;
     padding: 15px;
   }
 
