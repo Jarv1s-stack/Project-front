@@ -6,11 +6,8 @@ import ThemeToggle from "./ThemeToggle";
 import logo from "../assets/logo.svg";
 import home from "../assets/home.svg";
 import profile from "../assets/profile.svg";
-import search from "../assets/searchIcon.svg";
 import createEvent from "../assets/createEvent.svg";
-import shop from "../assets/shop.svg"; 
-import lightIcon from "../assets/light.svg";
-import darkIcon from "../assets/dark.svg";
+import shop from "../assets/shop.svg";
 
 export default function Header() {
   const { user } = useContext(AuthContext);
@@ -20,39 +17,45 @@ export default function Header() {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <header style={{backgroundColor: "#4F46E5", display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: 'center', height: "95px", width: "100%",}} >
-      <div className={styles["header-left"]} onClick={() => navigate("/")}>
-        <img src={logo} alt="Logo" style={{width: "auto", height: "50px", marginLeft: "-50px"}} height={36} />
+    <header className={styles.header}>
+      <div className={styles.logoContainer} onClick={() => navigate("/")}>
+        <img src={logo} alt="Logo" className={styles.logo} />
       </div>
 
-      <nav style={{ marginRight: "-120px" ,width: '33%', height: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '30px'}} >
-
+      <nav className={styles.nav}>
         <button
-          style={{backgroundColor: "#4F46E5", border: "none"}}
+          className={styles.navButton}
           onClick={() => navigate("/")}
+          aria-label="Home"
         >
-          <img src={home} alt="Home" height={28} />
+          <img src={home} alt="Home" className={styles.navIcon} />
         </button>
+        
         <button
-          style={{backgroundColor: "#4F46E5", border: "none"}}
+          className={styles.navButton}
           onClick={() => navigate("/create-event")}
+          aria-label="Create Event"
         >
-          <img src={createEvent} alt="Create Event" height={28} />
+          <img src={createEvent} alt="Create Event" className={styles.navIcon} />
         </button>
+        
         <button
-          style={{backgroundColor: "#4F46E5", border: "none"}}
+          className={styles.navButton}
           onClick={() => navigate("/shop")}
+          aria-label="Shop"
         >
-         <img src={shop} alt="shop" height={28}/>
+          <img src={shop} alt="Shop" className={styles.navIcon} />
         </button>
 
         <button
-          style={{backgroundColor: "#4F46E5", border: "none"}}
+          className={styles.navButton}
           onClick={() => navigate("/profile")}
+          aria-label="Profile"
         >
-          <img src={profile} alt="Profile" height={28} />
+          <img src={profile} alt="Profile" className={styles.navIcon} />
         </button>
-        <ThemeToggle/>
+        
+        <ThemeToggle className={styles.themeToggle} />
       </nav>
     </header>
   );

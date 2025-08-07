@@ -1,0 +1,102 @@
+.header {
+  background-color: #4F46E5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 95px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 100;
+}
+
+.logoContainer {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  max-width: 100%;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  flex-grow: 1;
+  max-width: 500px;
+}
+
+.navButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.navButton:hover {
+  transform: scale(1.1);
+}
+
+.navIcon {
+  height: 28px;
+  width: auto;
+}
+
+.themeToggle {
+  margin-left: 10px;
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 768px) {
+  .header {
+    height: 80px;
+    padding: 0 15px;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .nav {
+    gap: 15px;
+  }
+  
+  .navIcon {
+    height: 24px;
+  }
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 480px) {
+  .header {
+    height: 70px;
+    padding: 0 10px;
+  }
+  
+  .logo {
+    height: 35px;
+  }
+  
+  .nav {
+    gap: 10px;
+  }
+  
+  .navIcon {
+    height: 22px;
+  }
+  
+  .themeToggle {
+    margin-left: 5px;
+  }
+}
