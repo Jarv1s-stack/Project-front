@@ -1,59 +1,108 @@
 import { useEffect, useState, useRef } from "react";
 import api from "../utils/api";
+import styles from "./ChatBox.module.css";
 
-export default function ChatBox({ eventId }) {
+export default function ChatBox({ eventId, currentUser }) {
   const [messages, setMessages] = useState([]);
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(true);
   const bottomRef = useRef();
 
   useEffect(() => {
     fetchMessages();
-    // eslint-disable-next-line
+    // Set up polling for new messages every 5 seconds
+    const interval = setInterval(fetchMessages, 5000);
+    return () => clearInterval(interval);
   }, [eventId]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollToBottom();
   }, [messages]);
 
   const fetchMessages = async () => {
     try {
       const res = await api.get(`/messages/${eventId}`);
       setMessages(res.data);
+      setLoading(false);
     } catch {
       setMessages([]);
+      setLoading(false);
     }
+  };
+
+  const scrollToBottom = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!content.trim()) return;
+    
     try {
       await api.post(`/messages/${eventId}`, { content });
       setContent("");
-      fetchMessages();
-    } catch {}
+      // Optimistically update messages
+      setMessages(prev => [
+        ...prev, 
+        {
+          id: Date.now(), // temporary id
+          content,
+          username: currentUser?.username || "You",
+          isCurrentUser: true
+        }
+      ]);
+    } catch (err) {
+      console.error("Failed to send message:", err);
+    }
   };
 
   return (
-    <div className="chatbox">
-      <div className="messages" style={{ maxHeight: 300, overflowY: "auto" }}>
-        {messages.map((m, i) => (
-          <div key={m.id || i} className="msg">
-            <b>{m.username || "User"}: </b>
-            <span>{m.content}</span>
-          </div>
-        ))}
-        <div ref={bottomRef} />
+    <div className={styles.chatContainer}>
+      <div className={styles.messagesContainer}>
+        {loading ? (
+          <div className={styles.loading}>Loading messages...</div>
+        ) : messages.length === 0 ? (
+          <div className={styles.noMessages}>No messages yet. Be the first to chat!</div>
+        ) : (
+          messages.map((message) => (
+            <div 
+              key={message.id} 
+              className={`${styles.message} ${
+                message.isCurrentUser ? styles.currentUser : styles.otherUser
+              }`}
+            >
+              <div className={styles.messageHeader}>
+                <span className={styles.username}>
+                  {message.username}
+                </span>
+                <span className={styles.timestamp}>
+                  {new Date(message.createdAt || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </span>
+              </div>
+              <div className={styles.messageContent}>
+                {message.content}
+              </div>
+            </div>
+          ))
+        )}
+        <div ref={bottomRef} className={styles.bottomRef} />
       </div>
-      <form onSubmit={sendMessage} className="chat-form" style={{ display: "flex", gap: 0, flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: "15px" }}>
+
+      <form onSubmit={sendMessage} className={styles.messageForm}>
         <input
           value={content}
-          onChange={e => setContent(e.target.value)}
-          placeholder="Your massage..."
+          onChange={(e) => setContent(e.target.value)}
+          placeholder="Type your message..."
           maxLength={500}
-          style={{ width: "300px", borderRadius: "8px", height: "20px", paddingLeft: "10px" }}
+          className={styles.messageInput}
         />
-        <button style={{ background: "none", border: "white solid 1px", color: "white", fontWeight: "600", height: "23px", borderRadius: "4px", width: "110px" }} type="submit">Enter</button>
+        <button 
+          type="submit" 
+          className={styles.sendButton}
+          disabled={!content.trim()}
+        >
+          Send
+        </button>
       </form>
     </div>
   );
