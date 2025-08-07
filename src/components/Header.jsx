@@ -24,14 +24,6 @@ export default function Header() {
       <div className={styles["header-left"]} onClick={() => navigate("/")}>
         <img src={logo} alt="Logo" style={{width: "auto", height: "50px", marginLeft: "-50px"}} height={36} />
       </div>
-      
-      <form style={{width: 'auto', height: "100%", display: "flex", flexDirection: "row", alignItems: "center" }} onSubmit={e => { e.preventDefault(); }}>
-        <input type="text" style={{width: "350px", height: "17px",  position: "relative"}} placeholder="Поиск событий..."/>
-        <button style={{backgroundColor: "#4F46E5", borderRadius: "999px" ,border: "none", position: "absolute", top: "35px", right: "732px"}} type="submit" title="Поиск">
-          <img src={search} alt="Search" height={22} />
-        </button>
-      </form>
-
 
       <nav style={{ marginRight: "-120px" ,width: '33%', height: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '30px'}} >
 
