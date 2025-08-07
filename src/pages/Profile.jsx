@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-
+import styles from "./Profile.module.css";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -59,7 +59,7 @@ export default function Profile() {
         setCurrentPassword("");
         setNewPassword("");
         setConfirmPassword("");
-        setShowPasswordForm(false); // Скрываем форму после успешной смены пароля
+        setShowPasswordForm(false);
       }
     } catch (err) {
       console.error(err);
@@ -67,131 +67,109 @@ export default function Profile() {
     }
   };
 
-  if (loading) return <div>Загрузка...</div>;
+  if (loading) return <div className={styles.loading}>Загрузка...</div>;
 
   if (!user) {
     return (
-      <div style={{ maxWidth: 480, margin: "40px auto", padding: "20px", background: "#fff", borderRadius: 14, boxShadow: "0 6px 32px #0001" }}>
+      <div className={styles.errorContainer}>
         <h1>Вы не авторизованы</h1>
+        <button 
+          className={styles.loginButton}
+          onClick={() => navigate("/login")}
+        >
+          Войти в аккаунт
+        </button>
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: "40px auto",color: "white", padding: "20px", background: "#fff", borderRadius: 7, boxShadow: "0 6px 32px #0001", backgroundColor: "#4F46E5", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>                                 
-    <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", width: "100%", height: "auto", gap: "15px"}} >
+    <div className={styles.profileContainer}>
       {user.avatar && (
         <img
           src={`https://project-back-3rgq.onrender.com${user.avatar}`}
           alt="avatar"
-          style={{
-            width: 120,
-            height: 120,
-            borderRadius: "50%",
-            objectFit: "cover",
-            marginBottom: 16,
-            marginLeft: "40px",
-          }}
+          className={styles.avatar}
         />
       )}
 
-      <div style={{  display: "flex", flexDirection: "column", justifyContent: "start", alignItems: "start", width: "100%", height: "auto", gap: "10px", marginLeft: "20px"}}>
-      <div>
-        <strong>Имя:</strong> {user.username}
+      <div className={styles.profileInfo}>
+        <div className={styles.infoItem}>
+          <span className={styles.infoLabel}>Имя:</span>
+          <span className={styles.infoValue}>{user.username}</span>
+        </div>
+        
+        <div className={styles.infoItem}>
+          <span className={styles.infoLabel}>Email:</span>
+          <span className={styles.infoValue}>{user.email}</span>
+        </div>
+        
+        <div className={styles.infoItem}>
+          <span className={styles.infoLabel}>Points:</span>
+          <span className={styles.infoValue}>{user.points}</span>
+        </div>
       </div>
-      <div>
-        <strong>Email:</strong> {user.email}
-      </div>
-      <div>
-        <strong>Points:</strong> {user.points}
-      </div>
-      </div>
-    </div>
-      <div style={{   
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "auto", 
-        gap: "15px"
-      }}>
 
-      <button
-        onClick={() => {
-          logout();
-          navigate("/login");
-        }}
-        style={{
-          marginTop: 16,
-          padding: "8px 16px",
-          background: "#f53d3d",
-          color: "#fff",
-          border: "none",
-          borderRadius: 4,
-          cursor: "pointer",
-          width: "150px"
-        }}
-      >
-        Log out
-      </button>
+      <div className={styles.buttonsContainer}>
+        <button
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
+          className={styles.logoutButton}
+        >
+          Выйти
+        </button>
 
-
-      <button
-        onClick={() => setShowPasswordForm(!showPasswordForm)}
-        style={{
-          marginTop: 16,
-          padding: "8px 16px",
-          background: "#38DF00",
-          color: "#fff",
-          border: "none",
-          borderRadius: 4,
-          cursor: "pointer",
-          width: "150px"
-        }}
-      >
-        {showPasswordForm ? "Cancel" : "Change Password"}
-      </button>
+        <button
+          onClick={() => setShowPasswordForm(!showPasswordForm)}
+          className={styles.passwordButton}
+        >
+          {showPasswordForm ? "Отмена" : "Сменить пароль"}
+        </button>
       </div>
 
       {showPasswordForm && (
-        <form onSubmit={handlePasswordChange} style={{ marginTop: 20 }}>
-          <div style={{ marginBottom: 16 }}>
-            <label>Your Password</label>
+        <form onSubmit={handlePasswordChange} className={styles.passwordForm}>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Текущий пароль</label>
             <input
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               required
-              style={{ padding: "8px", borderRadius: 4, border: "1px solid #ccc" }}
+              className={styles.formInput}
             />
           </div>
-          <div style={{ marginBottom: 16 }}>
-            <label>New Password</label>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Новый пароль</label>
             <input
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               required
-              style={{ padding: "8px", borderRadius: 4, border: "1px solid #ccc" }}
+              className={styles.formInput}
             />
           </div>
-          <div style={{ marginBottom: 16 }}>
-            <label>Submit</label>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Подтвердите пароль</label>
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
-              style={{ padding: "8px", borderRadius: 4, border: "1px solid #ccc" }}
+              className={styles.formInput}
             />
           </div>
-          {message && <div style={{ color: message.includes("успеш") ? "green" : "red" }}>{message}</div>}
-          <button
-            type="submit"
-            style={{ padding: "8px 16px", background: "#1e88e5", color: "#fff", border: "none", borderRadius: 4 }}
-          >
-            Change Password
+          {message && (
+            <div className={`${styles.message} ${
+              message.includes("успеш") ? styles.success : styles.error
+            }`}>
+              {message}
+            </div>
+          )}
+          <button type="submit" className={styles.submitButton}>
+            Сменить пароль
           </button>
         </form>
       )}
