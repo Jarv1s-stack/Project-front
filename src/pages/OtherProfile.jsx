@@ -46,7 +46,7 @@ export default function OtherProfile() {
     <div className={styles.profileContainer}>
       {user.avatar && (
         <img
-          src={`https://project-back-3rgq.onrender.com${user.avatar}`}
+          src={`https://project-back-3rgq.onrender.com/${user.avatar}`}
           alt="avatar"
           className={styles.avatar}
         />
