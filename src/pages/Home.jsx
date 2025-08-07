@@ -28,7 +28,7 @@ export default function Home() {
           aria-label="Create Event"
         >
           <img src={createEvent} alt="" className={styles.createIcon} />
-          <span>Create</span>
+          <span>Create Event</span>
         </button>
       </div>
 

@@ -1,71 +1,123 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import styles from "./Profile.module.css";
-import avatarPlaceholder from "../assets/avatar-placeholder.svg";
-import logoutIcon from "../assets/logout.svg";
+import styles from "./Register.module.css";
+import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.svg";
+import emailIcon from "../assets/emailIcon.svg";
+import passwordIcon from "../assets/passwordIcon.svg";
+import nameIcon from "../assets/nameIcon.svg";
 
-export default function Profile() {
-  const { user, logout } = useContext(AuthContext);
+export default function Register() {
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [error, setError] = useState("");
+
+  async function handleRegister(e) {
+    e.preventDefault();
+    setError("");
+    try {
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("password", password);
+      if (avatar) formData.append("avatar", avatar);
+
+      const res = await fetch("https://project-back-3rgq.onrender.com/api/auth/register", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Ошибка регистрации");
+      login(data.user, data.token);
+      navigate("/");
+    } catch (e) {
+      setError(e.message);
+    }
+  }
 
   return (
-    <div className={styles.profileWrapper}>
-      <div className={styles.profileBox}>
-        <div className={styles.profileContent}>
-          <div className={styles.infoHeader}>
-            <img 
-              src={user?.avatar || avatarPlaceholder} 
-              alt="Profile" 
-              className={styles.avatar}
-            />
-            <div className={styles.userInfo}>
-              <h2 className={styles.username}>{user?.username}</h2>
-              <p className={styles.userEmail}>{user?.email}</p>
-            </div>
-            <button 
-              className={styles.logoutBtn}
-              onClick={handleLogout}
-              aria-label="Logout"
-            >
-              <img src={logoutIcon} alt="" className={styles.logoutIcon} />
-              <span>Logout</span>
-            </button>
-          </div>
+    <div className={styles.wrapper}>
+      <form className={styles.form} onSubmit={handleRegister}>
+        <img className={styles.logo} src={logo} alt="Logo" />
+        <h3 className={styles.subtitle}>If you don't have an account, <br />enter your details and create account.</h3>
 
-          <div className={styles.purchaseBlock}>
-            <h3>Your Purchases</h3>
-            {user?.purchases?.length > 0 ? (
-              <ul className={styles.purchaseList}>
-                {user.purchases.map((purchase, index) => (
-                  <li key={index} className={styles.purchaseItem}>
-                    <img 
-                      src={purchase.image} 
-                      alt={purchase.name} 
-                      className={styles.purchaseImage}
-                    />
-                    <div className={styles.purchaseDetails}>
-                      <p className={styles.purchaseName}>{purchase.name}</p>
-                      <p className={styles.purchaseDesc}>{purchase.description}</p>
-                      <div className={styles.purchaseMeta}>
-                        <span>${purchase.price}</span>
-                        <span>{new Date(purchase.date).toLocaleDateString()}</span>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className={styles.empty}>No purchases yet</p>
-            )}
-          </div>
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>
+            Username
+            <div className={styles.inputContainer}>
+              <img className={styles.icon} src={nameIcon} alt="name icon" />
+              <input
+                className={styles.input}
+                type="text"
+                required
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+                placeholder="your username"
+                autoFocus
+              />
+            </div>
+          </label>
         </div>
-      </div>
+
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>
+            Email
+            <div className={styles.inputContainer}>
+              <img className={styles.icon} src={emailIcon} alt="email icon" />
+              <input
+                className={styles.input}
+                type="email"
+                required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="your email"
+              />
+            </div>
+          </label>
+        </div>
+
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>
+            Password
+            <div className={styles.inputContainer}>
+              <img className={styles.icon} src={passwordIcon} alt="password icon" />
+              <input
+                className={styles.input}
+                type="password"
+                required
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="your password"
+              />
+            </div>
+          </label>
+        </div>
+
+        <div className={styles.inputGroup}>
+          <label className={styles.label}>
+            Photo profile
+            <input
+              className={styles.fileInput}
+              type="file"
+              accept="image/*"
+              onChange={e => setAvatar(e.target.files[0])}
+            />
+          </label>
+        </div>
+
+        {error && <div className={styles.error}>{error}</div>}
+        
+        <button type="submit" className={styles.registerBtn}>Create account</button>
+        
+        <div className={styles.loginLink} onClick={() => navigate("/login")}>
+          <p>else you have an account login</p>
+        </div>
+      </form>
     </div>
   );
 }
