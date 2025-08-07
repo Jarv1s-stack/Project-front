@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import styles from "./Profile.module.css";
-import avatarPlaceholder from "../assets/avatar-placeholder.png";
+import avatarPlaceholder from "../assets/avatar-placeholder.svg";
 import logoutIcon from "../assets/logout.svg";
 
 export default function Profile() {
