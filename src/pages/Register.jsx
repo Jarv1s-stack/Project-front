@@ -53,6 +53,7 @@ export default function Register() {
               <img className={styles.icon} src={nameIcon} alt="name icon" />
               <input
                 className={styles.input}
+                style={{}}
                 type="text"
                 required
                 value={username}
