@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-
+import styles from "./OtherProfile.module.css";
 
 export default function OtherProfile() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  
-  
-
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -29,44 +26,55 @@ export default function OtherProfile() {
       .finally(() => setLoading(false));
   }, [id]);
 
-
-  if (loading) return <div>Загрузка...</div>;
+  if (loading) return <div className={styles.loading}>Загрузка...</div>;
 
   if (!user) {
     return (
-      <div style={{ maxWidth: 480, margin: "40px auto", padding: "20px", background: "#fff", borderRadius: 14, boxShadow: "0 6px 32px #0001" }}>
+      <div className={styles.errorContainer}>
         <h1>Вы не авторизованы</h1>
+        <button 
+          className={styles.loginButton}
+          onClick={() => navigate("/login")}
+        >
+          Войти в аккаунт
+        </button>
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: "40px auto",color: "white", padding: "20px", background: "#fff", borderRadius: 14, boxShadow: "0 6px 32px #0001", backgroundColor: "#4F46E5", display: "flex", flexDirection: "column", alignItems: "center" }}>                                 
-
+    <div className={styles.profileContainer}>
       {user.avatar && (
         <img
           src={`https://project-back-3rgq.onrender.com${user.avatar}`}
           alt="avatar"
-          style={{
-            width: 120,
-            height: 120,
-            borderRadius: "50%",
-            objectFit: "cover",
-            marginBottom: 16,
-          }}
+          className={styles.avatar}
         />
       )}
 
-      <div style={{ marginBottom: 16 }}>
-        <strong style={{marginRight: "10px", marginLeft: "-110px"}}>Имя:</strong> {user.username}
-      </div>
-      <div style={{ marginBottom: 16 }}>
-        <strong style={{marginRight: "10px"}}>Email:</strong> {user.email}
-      </div>
-      <div style={{ marginBottom: 16 }}>
-        <strong style={{marginRight: "10px", marginLeft: "-110px"}}>Points:</strong> {user.points}
+      <div className={styles.profileInfo}>
+        <div className={styles.infoItem}>
+          <span className={styles.infoLabel}>Имя:</span>
+          <span className={styles.infoValue}>{user.username}</span>
+        </div>
+        
+        <div className={styles.infoItem}>
+          <span className={styles.infoLabel}>Email:</span>
+          <span className={styles.infoValue}>{user.email}</span>
+        </div>
+        
+        <div className={styles.infoItem}>
+          <span className={styles.infoLabel}>Points:</span>
+          <span className={styles.infoValue}>{user.points}</span>
+        </div>
       </div>
 
+      <button 
+        className={styles.backButton}
+        onClick={() => navigate(-1)}
+      >
+        Назад
+      </button>
     </div>
   );
 }
