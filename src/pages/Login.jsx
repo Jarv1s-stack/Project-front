@@ -34,41 +34,49 @@ export default function Login() {
 
   return (
     <div className={styles.loginWrapper}>
-<form className={styles.loginBox} onSubmit={handleLogin}>
-        <img style={{width: "200px", height: "auto", marginTop: "-20px"}} src={logo} alt="" />
+      <form className={styles.loginBox} onSubmit={handleLogin}>
+        <img className={styles.logo} src={logo} alt="" />
         <h3>If you have an account, <br />enter your details and go to the site.</h3>
-        <label>
-          
-          Email
-          <img className={styles.emailIcon} src={emailIcon} alt="" />
-          <input
-            className={styles.emailInput}
-            type="email"
-            autoFocus
-            required
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            placeholder="your email"
-          />
-        </label>
-        <label>
-          Пароль
-          <img className={styles.passwordIcon} src={passwordIcon} alt="" />
-          <div className={styles.passwordField}>
-            <input
-              className={styles.passwordInput}
-              type="text"
-              required
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="your password"
-            />
-          </div>
-        </label>
+        
+        <div className={styles.inputContainer}>
+          <label>
+            Email
+            <div className={styles.inputWrapper}>
+              <img className={styles.icon} src={emailIcon} alt="" />
+              <input
+                className={styles.inputField}
+                type="email"
+                autoFocus
+                required
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="your email"
+              />
+            </div>
+          </label>
+        </div>
+
+        <div className={styles.inputContainer}>
+          <label>
+            Пароль
+            <div className={styles.inputWrapper}>
+              <img className={styles.icon} src={passwordIcon} alt="" />
+              <input
+                className={styles.inputField}
+                type="password"
+                required
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                placeholder="your password"
+              />
+            </div>
+          </label>
+        </div>
+
         {error && <div className={styles.error}>{error}</div>}
         <button type="submit" className={styles.loginBtn}>Войти</button>
         <div className={styles.registerLink} onClick={() => navigate("/register")}>
-          <p style={{color: "white"}}>else you don't have an account Register</p>
+          <p>else you don't have an account Register</p>
         </div>
       </form>
     </div>
