@@ -105,7 +105,6 @@
 /* Мобильная адаптация */
 @media (max-width: 600px) {
   .profileContainer {
-    margin: 20px 15px;
     padding: 20px;
   }
 
@@ -129,7 +128,6 @@
 
 @media (max-width: 400px) {
   .profileContainer {
-    margin: 15px 10px;
     padding: 15px;
   }
 
