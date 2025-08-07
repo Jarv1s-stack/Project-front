@@ -34,7 +34,7 @@ export default function Register() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Ошибка регистрации");
       login(data.user, data.token);
-      navigate("/");
+      navigate("/login");
     } catch (e) {
       setError(e.message);
     }

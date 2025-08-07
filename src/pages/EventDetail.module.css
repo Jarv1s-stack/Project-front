@@ -1,104 +1,173 @@
-/* src/pages/EventDetail.module.css */
 .container {
-  width: 600px;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 50px 40px;
+  padding: 20px;
   background-color: #4f46e5;
   color: #fff;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.eventHeader {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .title {
-  margin-bottom: 8px;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .description {
+  font-size: 1.1rem;
+  line-height: 1.5;
   margin-bottom: 20px;
-  text-align: center;
 }
 
 .status {
-  color: #444cf7;
-  margin-bottom: 10px;
+  color: #a5b4fc;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
 }
 
-.main {
-  width: 100%;
-  display: flex;
-  gap: 40px;
-  margin-top: 20px;
-  flex-direction: column;
-}
-
-.participantsBlock {
+.mainContent {
   display: flex;
   flex-direction: column;
+  gap: 30px;
 }
 
-.participantsBlock h3{
-  text-align: start;
+.participantsSection {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
 }
 
-.partHeader {
-  margin-bottom: 8px;
-}
-
-.flex{
+.participantsHeader {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  margin-bottom: 15px;
+}
+
+.participantsHeader h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.actionBtn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.joinBtn {
+  background: #10b981;
+}
+
+.joinBtn:hover {
+  background: #059669;
+}
+
+.leaveBtn {
+  background: #ef4444;
+}
+
+.leaveBtn:hover {
+  background: #dc2626;
 }
 
 .participantsList {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .participantItem {
   cursor: pointer;
-  text-decoration: underline;
-  margin: 6px 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.participantItem:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .you {
-  color: #d1d1d1;
+  color: #d1d5db;
   margin-left: 6px;
+  font-size: 0.9rem;
 }
 
-.joinBtn,
-.leaveBtn {
-  padding: 10px 22px;
-  border: none;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 500;
-  cursor: pointer;
-  width: 150px;
+.chatSection {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
 }
 
-.joinBtn {
-  background: #38df00;
-}
-
-.leaveBtn {
-  background: #cc2222;
-}
-
-.chatBlock {
-  flex: 1;
-  border-top: 2px solid white;
-  padding-top: 20px;
-}
-
-/* вспомогательные */
+/* Вспомогательные стили */
 .loading,
 .error,
 .noParticipants {
   text-align: center;
+  padding: 20px;
+}
+
+.noParticipants {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    border-radius: 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .participantsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .actionBtn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .participantsSection,
+  .chatSection {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .description {
+    font-size: 0.95rem;
+  }
 }

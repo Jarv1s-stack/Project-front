@@ -1,4 +1,3 @@
-// src/pages/EventDetail.jsx
 import React, { useEffect, useState, useContext, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../utils/api";
@@ -9,7 +8,6 @@ import axios from "axios";
 
 export default function EventDetail() {
   const { id } = useParams();
-  
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   let actualUser = authContext?.user;
@@ -78,22 +76,30 @@ export default function EventDetail() {
   };
 
   if (loading) return <p className={styles.loading}>Загрузка события…</p>;
-  if (!event)  return <p className={styles.error}>Событие не найдено.</p>;
+  if (!event) return <p className={styles.error}>Событие не найдено.</p>;
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{event.title}</h1>
-      <p className={styles.description}>{event.description}</p>
+      <div className={styles.eventHeader}>
+        <h1 className={styles.title}>{event.title}</h1>
+        <p className={styles.description}>{event.description}</p>
+      </div>
 
       {joinStatus && <p className={styles.status}>{joinStatus}</p>}
 
-      <div className={styles.main}>
-        <div className={styles.participantsBlock}>
-          <h3 className={styles.partHeader}>
-            Участники ({event.participants?.length || 0}):
-          </h3>
-
-          <div className={styles.flex}>
+      <div className={styles.mainContent}>
+        <div className={styles.participantsSection}>
+          <div className={styles.participantsHeader}>
+            <h3>Участники ({event.participants?.length || 0}):</h3>
+            <button
+              onClick={isParticipant ? handleLeave : handleJoin}
+              className={`${styles.actionBtn} ${
+                isParticipant ? styles.leaveBtn : styles.joinBtn
+              }`}
+            >
+              {isParticipant ? "Выйти" : "Присоединиться"}
+            </button>
+          </div>
 
           {event.participants?.length > 0 ? (
             <ul className={styles.participantsList}>
@@ -114,17 +120,9 @@ export default function EventDetail() {
           ) : (
             <p className={styles.noParticipants}>Нет участников</p>
           )}
-
-          <button
-            onClick={isParticipant ? handleLeave : handleJoin}
-            className={isParticipant ? styles.leaveBtn : styles.joinBtn}
-          >
-            {isParticipant ? "Выйти из события" : "Присоединиться"}
-          </button>
-          </div>
         </div>
 
-        <div className={styles.chatBlock}>
+        <div className={styles.chatSection}>
           <ChatBox eventId={id} currentUser={actualUser} />
         </div>
       </div>
