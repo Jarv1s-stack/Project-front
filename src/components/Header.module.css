@@ -8,13 +8,14 @@
   padding: 0 20px;
   box-sizing: border-box;
   position: relative;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .logoContainer {
   cursor: pointer;
   display: flex;
   align-items: center;
+  z-index: 1001;
 }
 
 .logo {
@@ -23,6 +24,22 @@
   max-width: 100%;
 }
 
+/* Бургер-кнопка */
+.burgerButton {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+.burgerIcon {
+  height: 28px;
+  width: 28px;
+}
+
+/* Основная навигация */
 .nav {
   display: flex;
   justify-content: center;
@@ -39,9 +56,11 @@
   cursor: pointer;
   padding: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s;
+  gap: 5px;
 }
 
 .navButton:hover {
@@ -53,11 +72,28 @@
   width: auto;
 }
 
+.navText {
+  color: white;
+  font-size: 0.8rem;
+  display: none;
+}
+
 .themeToggle {
   margin-left: 10px;
 }
 
-/* Адаптация для планшетов */
+/* Затемнение фона */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Адаптация для планшетов и мобильных */
 @media (max-width: 768px) {
   .header {
     height: 80px;
@@ -69,15 +105,52 @@
   }
   
   .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #4F46E5;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 100px;
+    gap: 30px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .navOpen {
+    right: 0;
+  }
+  
+  .navButton {
+    flex-direction: row;
     gap: 15px;
+    padding: 15px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .navText {
+    display: block;
+    font-size: 1rem;
+  }
+  
+  .burgerButton {
+    display: block;
   }
   
   .navIcon {
     height: 24px;
   }
+  
+  .themeToggle {
+    margin-left: 0;
+    margin-top: 20px;
+  }
 }
 
-/* Адаптация для мобильных устройств */
 @media (max-width: 480px) {
   .header {
     height: 70px;
@@ -88,15 +161,12 @@
     height: 35px;
   }
   
-  .nav {
-    gap: 10px;
-  }
-  
   .navIcon {
     height: 22px;
   }
   
-  .themeToggle {
-    margin-left: 5px;
+  .burgerIcon {
+    height: 24px;
+    width: 24px;
   }
 }
