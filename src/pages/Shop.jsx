@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import styles from "./Shop.module.css";
 
 const Shop = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://project-back-3rgq.onrender.com/api/shop")
@@ -12,57 +16,77 @@ const Shop = () => {
       .then(data => {
         setItems(data);
         setLoading(false);
-      });
+      })
+      .catch(() => setLoading(false));
   }, []);
 
   const handleBuy = async (itemId) => {
     setMessage("");
-    const res = await fetch("https://project-back-3rgq.onrender.com/api/shop/purchase", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ itemId }),
-    });
-    const data = await res.json();
-    if (data.success){
-      setMessage(data.message);
-    } 
-      
-    else return setMessage(data.message || "Ошибка покупки");
+    try {
+      const res = await fetch("https://project-back-3rgq.onrender.com/api/shop/purchase", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ itemId }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setMessage(data.message);
+        setTimeout(() => setMessage(""), 3000);
+      } else {
+        setMessage(data.message || "Ошибка покупки");
+      }
+    } catch (err) {
+      setMessage("Ошибка соединения");
+    }
   };
 
-  if (loading) return <div>Загрузка товаров...</div>;
+  if (loading) return <div className={styles.loading}>Загрузка товаров...</div>;
+
   return (
-    <div style={{
-      display: "grid", gap: 32, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-      padding: 32, maxWidth: 1100, margin: "0 auto"
-    }}>
-      {items.map(item => (
-        <div key={item.id}
-          style={{
-            background: "#fff", borderRadius: 18, boxShadow: "0 4px 24px #0001",
-            padding: 24, display: "flex", flexDirection: "column", alignItems: "center"
-          }}>
-          <img src={item.image_url} alt={item.name} style={{ width: 120, height: 120, objectFit: "cover", borderRadius: 14 }} />
-          <div style={{ fontWeight: 600, fontSize: 20, marginTop: 10 }}>{item.name}</div>
-          <div style={{ color: "#888", margin: "10px 0" }}>{item.description}</div>
-          <div style={{ fontWeight: 700, fontSize: 18 }}>{item.price} $</div>
-          <button onClick={() => handleBuy(item.id)}
-            style={{
-              marginTop: 14, background: "#4F46E5", color: "#fff", border: "none",
-              borderRadius: 9, padding: "10px 28px", fontSize: 16, fontWeight: 600, cursor: "pointer", transition: "0.2s"
-            }}>
-            Купить
-          </button>
+    <div className={styles.shopWrapper}>
+      <h1>Магазин</h1>
+      
+      {user && (
+        <div className={styles.pointsBar}>
+          Ваши баллы: <span className={styles.pointsValue}>{user.points}</span>
         </div>
-      ))}
+      )}
+
       {message && (
-        <div style={{
-          position: "fixed", bottom: 30, left: "50%", transform: "translateX(-50%)",
-          background: "#4F46E5", color: "#fff", padding: "12px 26px", borderRadius: 20, fontSize: 17, boxShadow: "0 2px 16px #0003"
-        }}>
+        <div className={`${styles.message} ${message.includes("успеш") ? styles.success : styles.error}`}>
           {message}
         </div>
       )}
+
+      <div className={styles.grid}>
+        {items.map(item => (
+          <div key={item.id} className={styles.card}>
+            <img 
+              src={item.image_url} 
+              alt={item.name} 
+              className={styles.itemImage}
+              onError={(e) => {
+                e.target.src = 'https://via.placeholder.com/150';
+              }}
+            />
+            <h3 className={styles.itemTitle}>{item.name}</h3>
+            <p className={styles.itemDesc}>{item.description}</p>
+            <div className={styles.cardFooter}>
+              <span className={styles.price}>{item.price} $</span>
+              <button 
+                onClick={() => handleBuy(item.id)}
+                className={styles.buyBtn}
+                disabled={user?.points < item.price}
+              >
+                Купить
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
