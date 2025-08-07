@@ -19,12 +19,15 @@
   font-size: 1.8rem;
   margin-bottom: 12px;
   font-weight: 600;
+  color: white; 
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }
 
 .description {
   font-size: 1.1rem;
   line-height: 1.5;
   margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .status {
@@ -143,7 +146,6 @@
 
   .title {
     font-size: 1.5rem;
-    color: white;
   }
 
   .description {
