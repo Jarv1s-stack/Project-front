@@ -30,6 +30,8 @@ export default function EventDetail() {
     try {
       const response = await axios.get(`https://project-back-3rgq.onrender.com/api/events/${id}`);
       setEvent(response.data);
+      console.log(event.title);
+      
     } catch (err) {
       console.error("Ошибка при загрузке события:", err);
     } finally {
