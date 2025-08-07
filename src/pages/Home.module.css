@@ -167,7 +167,11 @@
 }
 
 @media (max-width: 768px) {
-  /* ... (остальные медиа-запросы остаются) ... */
+  .eventsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
   
   .eventCard {
     padding: 16px;
