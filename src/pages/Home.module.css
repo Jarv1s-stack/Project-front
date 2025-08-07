@@ -148,7 +148,7 @@
   opacity: 0.8;
 }
 
-/* Мобильная адаптация */
+
 @media (max-width: 768px) {
   .homeWrapper {
     padding: 16px 12px 40px;
