@@ -51,7 +51,7 @@ const Shop = () => {
       
       {user && (
         <div className={styles.pointsBar}>
-          Ваши баллы: <span className={styles.pointsValue}>{user.points}</span>
+          Ваши баллы: <span className={styles.pointsValue}>{user.points || 0}</span>
         </div>
       )}
 
