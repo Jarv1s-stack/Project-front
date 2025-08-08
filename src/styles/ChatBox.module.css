@@ -134,7 +134,6 @@
   }
 }
 
-/* Dark mode support */
 body.dark .chatContainer {
   background-color: #1e1e1e;
 }
@@ -159,7 +158,6 @@ body.dark .messageInput {
   border-color: #444;
 }
 
-/* Mobile responsiveness */
 @media (max-width: 768px) {
   .messagesContainer {
     max-height: 300px;
@@ -175,10 +173,10 @@ body.dark .messageInput {
   }
   
   .messageInput {
-    padding: 10px 14px;
+    padding: 10px 9px;
   }
   
   .sendButton {
-    padding: 0 16px;
+    padding: 0 12px;
   }
 }
