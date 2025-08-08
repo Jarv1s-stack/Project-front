@@ -31,7 +31,7 @@ export default function EventDetail() {
       const response = await axios.get(`https://project-back-3rgq.onrender.com/api/events/${id}`);
       setEvent(response.data);
     } catch (err) {
-      console.error("Ошибка при загрузке события:", err);
+      console.error("Error loading event:", err);
     } finally {
       setLoading(false);
     }
@@ -45,13 +45,13 @@ export default function EventDetail() {
     setJoinStatus("");
     try {
       await api.post(`/events/${id}/join`)
-      setJoinStatus("Вы успешно присоединились к событию.");
+      setJoinStatus("You have successfully joined the event.");
       await fetchEvent();
     } catch (err) {
       setJoinStatus(
         err.response?.status === 400
-          ? "Вы уже участвуете в этом событии."
-          : "Ошибка при присоединении. Попробуйте позже."
+          ? "You are already participating in this event."
+          : "Error connecting. Try again later."
       );
     }
   };
@@ -65,8 +65,8 @@ export default function EventDetail() {
     } catch (err) {
       setJoinStatus(
         err.response?.status === 400
-          ? "Вы не участвуете в этом событии."
-          : "Ошибка при выходе из события. Попробуйте позже."
+          ? "You are not participating in this event."
+          : "Error exiting event. Try again later"
       );
     }
   };
@@ -75,8 +75,8 @@ export default function EventDetail() {
     navigate(`/other/${userId}`);
   };
 
-  if (loading) return <p className={styles.loading}>Загрузка события…</p>;
-  if (!event) return <p className={styles.error}>Событие не найдено.</p>;
+  if (loading) return <p className={styles.loading}>Loading Events…</p>;
+  if (!event) return <p className={styles.error}>Events is not found.</p>;
 
   return (
     <div className={styles.container}>
@@ -90,14 +90,14 @@ export default function EventDetail() {
       <div className={styles.mainContent}>
         <div className={styles.participantsSection}>
           <div className={styles.participantsHeader}>
-            <h3>Участники ({event.participants?.length || 0}):</h3>
+            <h3> ({event.participants?.length || 0}):</h3>
             <button
               onClick={isParticipant ? handleLeave : handleJoin}
               className={`${styles.actionBtn} ${
                 isParticipant ? styles.leaveBtn : styles.joinBtn
               }`}
             >
-              {isParticipant ? "Выйти" : "Присоединиться"}
+              {isParticipant ? "leave" : "Join"}
             </button>
           </div>
 

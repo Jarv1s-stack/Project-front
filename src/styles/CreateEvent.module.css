@@ -40,10 +40,38 @@
   display: block;
 }
 
+.labelWithIcon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+}
+
+.inputWithIcon,
+.textareaWithIcon {
+  position: relative;
+}
+
+.inputIcon,
+.textareaIcon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+}
+
 .input,
 .textarea {
   width: 100%;
-  padding: 12px 15px;
+  padding: 12px 15px 12px 45px;
   border: 2px solid white;
   border-radius: 10px;
   font-size: 1rem;
@@ -68,6 +96,12 @@
 .textarea {
   min-height: 120px;
   resize: vertical;
+  padding-top: 15px;
+}
+
+.textareaIcon {
+  top: 20px;
+  transform: none;
 }
 
 .error {
@@ -119,6 +153,12 @@ body.dark .textarea {
   border-color: #4F46E5;
 }
 
+body.dark .icon,
+body.dark .inputIcon,
+body.dark .textareaIcon {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
 /* Мобильная адаптация */
 @media (max-width: 600px) {
   .form {
@@ -131,8 +171,19 @@ body.dark .textarea {
 
   .input,
   .textarea {
-    padding: 10px 12px;
+    padding: 10px 12px 10px 40px;
     font-size: 0.95rem;
+  }
+
+  .icon,
+  .inputIcon,
+  .textareaIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .textareaIcon {
+    top: 15px;
   }
 }
 
@@ -147,5 +198,9 @@ body.dark .textarea {
 
   .title {
     font-size: 1.3rem;
+  }
+
+  .labelWithIcon {
+    font-size: 0.9rem;
   }
 }

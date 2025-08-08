@@ -58,7 +58,7 @@ export default function Login() {
 
         <div className={styles.inputContainer}>
           <label>
-            Пароль
+            Password
             <div className={styles.inputWrapper}>
               <img className={styles.icon} src={passwordIcon} alt="" />
               <input

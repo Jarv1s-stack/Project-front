@@ -47,11 +47,11 @@ const Shop = () => {
 
   return (
     <div className={styles.shopWrapper}>
-      <h1>Магазин</h1>
+      <h1>Market</h1>
       
       {user && (
         <div className={styles.pointsBar}>
-          Ваши баллы: <span className={styles.pointsValue}>{user.points || 0}</span>
+          Your Points: <span className={styles.pointsValue}>{user.points || 0}</span>
         </div>
       )}
 
@@ -81,7 +81,7 @@ const Shop = () => {
                 className={styles.buyBtn}
                 disabled={user?.points < item.price}
               >
-                Купить
+                Shop
               </button>
             </div>
           </div>

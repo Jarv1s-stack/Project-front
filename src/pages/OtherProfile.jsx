@@ -26,7 +26,7 @@ export default function OtherProfile() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  if (loading) return <div className={styles.loading}>Загрузка...</div>;
+  if (loading) return <div className={styles.loading}>Loading...</div>;
 
   if (!user) {
     return (
@@ -36,7 +36,7 @@ export default function OtherProfile() {
           className={styles.loginButton}
           onClick={() => navigate("/login")}
         >
-          Войти в аккаунт
+          Log In
         </button>
       </div>
     );
@@ -54,7 +54,7 @@ export default function OtherProfile() {
 
       <div className={styles.profileInfo}>
         <div className={styles.infoItem}>
-          <span className={styles.infoLabel}>Имя:</span>
+          <span className={styles.infoLabel}>Name:</span>
           <span className={styles.infoValue}>{user.username}</span>
         </div>
         
@@ -73,7 +73,7 @@ export default function OtherProfile() {
         className={styles.backButton}
         onClick={() => navigate(-1)}
       >
-        Назад
+        Back
       </button>
     </div>
   );

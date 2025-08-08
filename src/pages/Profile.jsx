@@ -67,7 +67,7 @@ export default function Profile() {
     }
   };
 
-  if (loading) return <div className={styles.loading}>Загрузка...</div>;
+  if (loading) return <div className={styles.loading}>Loading...</div>;
 
   if (!user) {
     return (
@@ -77,7 +77,7 @@ export default function Profile() {
           className={styles.loginButton}
           onClick={() => navigate("/login")}
         >
-          Войти в аккаунт
+          Log In
         </button>
       </div>
     );
@@ -95,7 +95,7 @@ export default function Profile() {
 
       <div className={styles.profileInfo}>
         <div className={styles.infoItem}>
-          <span className={styles.infoLabel}>Имя:</span>
+          <span className={styles.infoLabel}>Name:</span>
           <span className={styles.infoValue}>{user.username}</span>
         </div>
         
@@ -118,7 +118,7 @@ export default function Profile() {
           }}
           className={styles.logoutButton}
         >
-          Выйти
+          LogOut
         </button>
 
         <button
@@ -132,7 +132,7 @@ export default function Profile() {
       {showPasswordForm && (
         <form onSubmit={handlePasswordChange} className={styles.passwordForm}>
           <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Текущий пароль</label>
+            <label className={styles.formLabel}>Your password</label>
             <input
               type="password"
               value={currentPassword}
@@ -142,7 +142,7 @@ export default function Profile() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Новый пароль</label>
+            <label className={styles.formLabel}>New password</label>
             <input
               type="password"
               value={newPassword}
@@ -152,7 +152,7 @@ export default function Profile() {
             />
           </div>
           <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Подтвердите пароль</label>
+            <label className={styles.formLabel}>Confirm password</label>
             <input
               type="password"
               value={confirmPassword}
@@ -169,7 +169,7 @@ export default function Profile() {
             </div>
           )}
           <button type="submit" className={styles.submitButton}>
-            Сменить пароль
+            Change Password
           </button>
         </form>
       )}
