@@ -44,10 +44,7 @@ export default function CreateEvent() {
         
         <div className={styles.formGroup}>
           <label className={styles.label}>
-            <div className={styles.labelWithIcon}>
-              <img src={EventTitleIcon} alt="Title icon" className={styles.icon} />
-              Title Event
-            </div>
+            Title Event
             <div className={styles.inputWithIcon}>
               <img src={EventTitleIcon} alt="Title icon" className={styles.inputIcon} />
               <input
@@ -66,10 +63,7 @@ export default function CreateEvent() {
 
         <div className={styles.formGroup}>
           <label className={styles.label}>
-            <div className={styles.labelWithIcon}>
-              <img src={EventDescriptionIcon} alt="Description icon" className={styles.icon} />
-              Description
-            </div>
+            Description
             <div className={styles.textareaWithIcon}>
               <img src={EventDescriptionIcon} alt="Description icon" className={styles.textareaIcon} />
               <textarea
@@ -87,10 +81,7 @@ export default function CreateEvent() {
 
         <div className={styles.formGroup}>
           <label className={styles.label}>
-            <div className={styles.labelWithIcon}>
-              <img src={EventDateIcon} alt="Date icon" className={styles.icon} />
-              Start date and time
-            </div>
+            Start date and time
             <div className={styles.inputWithIcon}>
               <img src={EventDateIcon} alt="Date icon" className={styles.inputIcon} />
               <input

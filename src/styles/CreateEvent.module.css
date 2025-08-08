@@ -40,18 +40,6 @@
   display: block;
 }
 
-.labelWithIcon {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.icon {
-  width: 18px;
-  height: 18px;
-}
-
 .inputWithIcon,
 .textareaWithIcon {
   position: relative;
@@ -153,7 +141,6 @@ body.dark .textarea {
   border-color: #4F46E5;
 }
 
-body.dark .icon,
 body.dark .inputIcon,
 body.dark .textareaIcon {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
@@ -175,7 +162,6 @@ body.dark .textareaIcon {
     font-size: 0.95rem;
   }
 
-  .icon,
   .inputIcon,
   .textareaIcon {
     width: 16px;
@@ -198,9 +184,5 @@ body.dark .textareaIcon {
 
   .title {
     font-size: 1.3rem;
-  }
-
-  .labelWithIcon {
-    font-size: 0.9rem;
   }
 }
